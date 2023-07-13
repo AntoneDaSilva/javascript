@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        label{
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"]{
+            padding: 5px;
+            width: 200px;
+        }
+
+        button{
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result{
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de IMC</h1>
+    <form id="imcForm">
+        <label for="weight">Peso (kg):</label>
+        <input type="number" id="weight" required>
+
+        <label for="height">Altura (cm):</label>
+        <input type="number" id="height" required>
+
+        <button type="submit">Calculadora</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function calculadora(weight, height){
+            var heightInMeter = height / 100;
+            var imc = weight / (heightInMeter * heightInMeter)
+            return imc.toFixed(2)
+        }
+
+        function showResult(imc){
+            var resultDiv = document.getElementById('result')
+            var message = ''
+
+            if(imc < 18.5){
+                message = 'Abaixo do peso'
+            }else if(imc >= 18.5 && imc < 25){
+                message = 'peso normal'
+            }else if(imc >= 25 && imc < 30){
+                message = 'Sobrepeso'
+            }else{
+                message = 'Obesidade'
+            }
+
+            resultDiv.innerHTML = 'Seu IMC é ' + imc + ' - ' + message
+        }
+
+        function handleSubmit(event){
+            event.preventDefault();
+
+            var weightInput = document.getElementById('weight')
+            var heightInput = document.getElementById('height')
+
+            var weight = parseFloat(weightInput.value)
+            var height = parseFloat(heightInput.value)
+
+            var imc = calculadora(weight, height)
+            showResult(imc)
+        }
+
+        var form = document.getElementById('imcForm')
+        form.addEventListener('submit', handleSubmit)
+    </script>
+</body>
+</html>
