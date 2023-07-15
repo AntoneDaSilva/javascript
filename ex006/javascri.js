@@ -23,4 +23,7 @@ class Pessoa{
         console.log('----------------------')
     }
 }
-const btn_add = document.querySelector('#btn_add')
+let pessoa = []
+
+const btn_add = document.querySelector("#btn_add")
+const res = document.querySelector('#res')
