@@ -1,6 +1,40 @@
 const pessoa = {
-    nome:'Antony'
+    nome: '',
+    idade: '',
+    getNome:function(){
+        return this.nome
+    },
+    getIdade:()=>{
+        return this.idade
+    },
+    setNome:(nome)=>{
+        return this.nome = nome
+    },
+    setIdade:(nome)=>{
+        return this.idade = idade
+    }
 }
+ let nom = pessoa.nome
+ let idad = pessoa.idade
+const btn_add = document.querySelector('#btn_add')
+const res = document.querySelector('.res')
+
+const addPessoa = (el)=>{
+        const div = document.createElement('div')
+        div.setAttribute('class', 'pessoa')
+        div.innerHTML = `nome: ${nom}<br>idade: ${idad}`
+        res.appendChild(div)
+
+}
+
+btn_add.addEventListener('click', ()=>{
+    const f_name = document.querySelector('#f_name').value
+    const f_idade = document.querySelector('#f_idade').value
+    nom = f_name
+    idad = f_idade
+    console.log(nom)
+    addPessoa()
+})
 
 
 //  function Pessoa(pnome,pidade){
