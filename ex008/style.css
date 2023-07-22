@@ -15,10 +15,12 @@
 }
 
 .carro{
-    border: 3px;
+    border: 3px #008 solid;
     background-color: #8cf;
     padding: 5px;
+    border-radius: 5px;
     display: flex;
+    flex-direction: column;
     width: 200px;
 }
 
@@ -41,4 +43,8 @@
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
+}
+
+.c2{
+    border-radius: 20px;
 }

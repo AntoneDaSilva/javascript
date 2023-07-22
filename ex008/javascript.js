@@ -1,3 +1,74 @@
+const todosRadios = document.querySelectorAll('input[type=radio]')
+const f_blindagem = document.getElementById('f_blindagem')
+const f_munição = document.getElementById('f_munição')
+const  f_nome = document.getElementById('f_nome')
+const f_portas = document.getElementById('f_portas')
+const carros = document.querySelector('#carros')
+const btn_addCarro = document.getElementById('btn_addCarro')
+
+
+let a_carros = []
+
+const removerCarro = function(quem){
+    a_carros = a_carros.filter((el)=>{
+        return el.nome != quem
+    })
+}
+
+todosRadios[0].addEventListener('click', ()=>{
+    f_blindagem.removeAttribute('disabled')
+    f_munição.removeAttribute('disabled')
+    
+})
+
+todosRadios[1].addEventListener('click', ()=>{
+    f_nome.value = ''
+    f_portas.value = 0
+    f_blindagem.value = 0
+    f_munição.value = 0 
+    f_blindagem.setAttribute('disabled', 'disabled')
+    f_munição.setAttribute('disabled', 'disabled')
+})
+
+const gerenciarExibicaoCarros = () => {
+    carros.innerHTML = ''
+    a_carros.forEach((c)=>{
+        const div = document.createElement('div')
+        const btn = document.createElement('button')
+        btn.innerHTML =  'remover'
+        btn.setAttribute('class', 'c2')
+        btn.addEventListener('click', (evt)=>{
+            const quemRemover = evt.target.parentNode.dataset.nome
+            removerCarro(quemRemover)
+            gerenciarExibicaoCarros() 
+
+        })
+        div.setAttribute('class', 'carro')
+        div.setAttribute('data-nome', c.nome)
+        div.innerHTML = `Nome: ${c.nome}<br>`
+        div.innerHTML += `Blindagem: ${c.portas}<br>`
+        div.innerHTML += `Portas: ${c.blindagem}<br>`
+        div.innerHTML += `Munição: ${c.municao}<br>`
+        div.appendChild(btn)
+        carros.appendChild(div)
+    })
+   
+}
+
+btn_addCarro.addEventListener('click', ()=>{
+    if(todosRadios[1].checked){
+        const c = new carro(f_nome.value, f_portas.value)
+        a_carros.push(c)
+    }else {
+        const m = new Militar(f_nome.value, f_portas.value, f_blindagem.value, f_munição.value)
+        a_carros.push(m)
+    }
+    gerenciarExibicaoCarros()
+})
+
+
+
+
 class carro{
     constructor(nome, portas){
         this.nome = nome
