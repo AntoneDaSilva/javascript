@@ -1,5 +1,8 @@
+const closeTo100 = (a, b ) => (100 - a) < (100 - b) ? a : b
 
-
+console.log(closeTo100(99, 1))
+console.log(closeTo100(49, 51))
+console.log(closeTo100(50, 50))
 // const par = (a) => {
 //     if(a % 2 == 0){
 //         return a.toString().slice(0, 2)
