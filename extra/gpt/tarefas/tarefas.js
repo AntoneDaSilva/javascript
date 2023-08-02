@@ -3,15 +3,18 @@ const  btn_adicionar = document.getElementById('btn_adicionar');
 const adicionar = document.getElementById('adicionar');
 
 let t_tarefa = []
+console.log(t_tarefa)
 
 const removerTarefa = (quem) => {
-    t_tarefa = t_tarefa.filter((el)=>{
-        console.log(el)
-        return el.tarefa.remove
+    const index = t_tarefa.findIndex((el) => el.tarefa.trim() === quem);
+    if (index !== -1) 
+        t_tarefa.splice(index, 1)
+    // t_tarefa = t_tarefa.filter((el)=>{
+    //     console.log(el)
+    //     return el.tarefa.remove
         
-    })
-    
 }
+
 
 //adiciona as tarefas em adicionar
 const gerenciarTarefas = ()=>{
@@ -23,9 +26,12 @@ const gerenciarTarefas = ()=>{
         btn_remover.innerHTML = 'Remover'
 
         btn_remover.addEventListener('click', (evt)=>{
+
             const quemRemover = evt.target.parentNode.getAttribute('data-tarefa');
             console.log(quemRemover)
+
             removerTarefa(quemRemover)
+            div.remove()
             gerenciarTarefas() 
     })
         div.innerHTML = `tarefa: ${c.tarefa}`
@@ -43,9 +49,14 @@ const gerenciarTarefas = ()=>{
 
 
 btn_adicionar.addEventListener('click', () => {
-    const L = new ListaTarefas(tarefas.value)
+    const novaTarefa = tarefas.value.trim();
+    const tarefaExistente = t_tarefa.find((tarefa) => tarefa.tarefa.trim() === novaTarefa);
+    if (novaTarefa !== '' && !tarefaExistente) {
+        const L = new ListaTarefas(novaTarefa)
     t_tarefa.push(L)
     gerenciarTarefas()
+    }
+    
 })
 
 class ListaTarefas{
