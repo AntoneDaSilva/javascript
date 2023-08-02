@@ -1,0 +1,20 @@
+#tarefas{
+    padding: 5px;
+}
+
+#btn_adicionar{
+    padding: 3px 5px 3px 5px;
+    margin: 10px;
+}
+
+#adicionar{
+    border: 1px solid black;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;;
+}
+
+.ad{
+    background-color: rgb(200, 210, 220);
+    border-radius: 5px;
+}
